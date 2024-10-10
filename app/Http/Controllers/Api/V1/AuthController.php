@@ -1,18 +1,18 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api\V1;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\SigninRequest;
 use App\Http\Requests\SignupRequest;
 use App\Models\User;
-use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
     public function signin(SigninRequest $request)
     {
-        if (Auth::attempt($request->all())) {
-            $user = Auth::User();
+        if (\Auth::attempt($request->all())) {
+            $user = \Auth::User();
             $success['token'] = $user->createToken('AuthToken')->accessToken;
 
             return response()->json([$success], 200);

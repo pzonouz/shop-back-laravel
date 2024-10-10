@@ -1,3 +1,12 @@
 {
-    "cSpell.words": ["signout"]
+    "cSpell.words": [
+        "autoload",
+        "autoloader",
+        "barryvdh",
+        "dont",
+        "fakerphp",
+        "nunomaduro",
+        "pestphp",
+        "signout"
+    ]
 }

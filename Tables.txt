@@ -1,0 +1,98 @@
+Users (Customers/Admins)
+
+id (PK)
+name
+email
+password
+role (e.g., customer, admin)
+created_at
+updated_at
+
+
+
+Categories
+
+id (PK)
+name
+description
+parent_category_id (FK, nullable for subcategories)
+created_at
+updated_at
+
+
+Products
+
+id (PK)
+name
+description
+price
+stock_quantity
+category_id (FK)
+sku (Unique Stock Keeping Unit)
+created_at
+updated_at
+
+
+Product_Images
+
+id (PK)
+product_id (FK)
+image_url
+created_at
+
+
+Orders
+
+id (PK)
+user_id (FK)
+total_amount
+status (e.g., pending, completed, shipped, canceled)
+created_at
+updated_at
+
+
+Order_Items
+
+id (PK)
+order_id (FK)
+product_id (FK)
+quantity
+price
+created_at
+
+
+Payments
+
+id (PK)
+order_id (FK)
+payment_method (e.g., credit card, PayPal)
+payment_status (e.g., pending, completed)
+transaction_id
+amount
+created_at
+updated_at
+
+
+Shipping_Details
+
+id (PK)
+order_id (FK)
+address_line_1
+address_line_2
+city
+postal_code
+country
+phone_number
+shipping_status (e.g., pending, shipped)
+created_at
+updated_at
+
+
+Reviews
+
+id (PK)
+user_id (FK)
+product_id (FK)
+rating (e.g., 1-5 stars)
+review_text
+created_at2
