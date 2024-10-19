@@ -6,11 +6,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Laravel\Passport\HasApiTokens;
 
 class User extends Authenticatable
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory, Notifiable;
+    use HasFactory;
+    use Notifiable;
+    use HasApiTokens;
 
     /**
      * The attributes that are mass assignable.
@@ -18,9 +21,11 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
+        // 'name',
         'email',
         'password',
+        'firstname',
+        'lastname',
     ];
 
     /**
@@ -38,6 +43,21 @@ class User extends Authenticatable
      *
      * @return array<string, string>
      */
+    public function setAttribute($key, $value)
+    {
+        // Ignore the password field
+        if ('password' === $key) {
+            return parent::setAttribute($key, $value);
+        }
+
+        // Convert all other fields to lowercase
+        if (is_string($value)) {
+            $value = strtolower($value);
+        }
+
+        return parent::setAttribute($key, $value);
+    }
+
     protected function casts(): array
     {
         return [
